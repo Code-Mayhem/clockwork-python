@@ -2,6 +2,7 @@ import SimpleHTTPServer
 import SocketServer
 import jsonpickle
 import sys
+import time
 
 port = 5000
 
@@ -19,6 +20,9 @@ def parse_valid_path(path):
     for token in tokenizedByParameters:
         keyValuePair = token.split("=",1)
         smsObject[keyValuePair[0]] = keyValuePair[1]
+
+    timestamp = int(time.time())
+    smsObject["timestamp"] = timestamp
     smsCache.append(smsObject)
 
 class MyRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
