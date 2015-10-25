@@ -33,6 +33,6 @@ class MyRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         return
 
 Handler = MyRequestHandler
-server = SocketServer.TCPServer(('0.0.0.0', 8080), Handler)
+server = SocketServer.TCPServer(('0.0.0.0', 80), Handler)
 
 server.serve_forever()
