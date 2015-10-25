@@ -32,10 +32,11 @@ class MyRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             jsonResult = jsonpickle.encode(smsCache)
             self.wfile.write(jsonResult)
         else:
-            self.send_response(404)
+            self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
-            self.wfile.write("fail")
+            jsonResult = jsonpickle.encode(smsCache)
+            self.wfile.write(jsonResult)
         return
 
 Handler = MyRequestHandler
