@@ -1,6 +1,12 @@
 import SimpleHTTPServer
 import SocketServer
 import jsonpickle
+import sys
+
+port = 5000
+
+if len(sys.argv) >= 1:
+    port = int(sys.argv[1])
 
 startsWithString = '/receive-sms?'
 
@@ -33,6 +39,6 @@ class MyRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         return
 
 Handler = MyRequestHandler
-server = SocketServer.TCPServer(('0.0.0.0', 5000), Handler)
+server = SocketServer.TCPServer(('0.0.0.0', port), Handler)
 
 server.serve_forever()
